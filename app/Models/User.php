@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -40,7 +41,10 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'fecha_nacimiento' => 'date'
     ];
+
+    protected $appends = ['edad'];
 
     /**
      * Get the domicilio associated with the User
@@ -50,5 +54,12 @@ class User extends Authenticatable
     public function domicilio(): HasOne
     {
         return $this->hasOne(UserDomicilio::class, 'user_id');
+    }
+
+    public function getEdadAttribute()
+    {
+        $now = Carbon::now();
+
+        return $this->fecha_nacimiento->diffInYears($now);
     }
 }
