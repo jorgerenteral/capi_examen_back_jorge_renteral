@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserDomiciliosTable extends Migration
+class CreateUserDomicilioTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateUserDomiciliosTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_domicilios', function (Blueprint $table) {
+        Schema::create('user_domicilio', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
             $table->string('domicilio', 255);
@@ -32,6 +32,6 @@ class CreateUserDomiciliosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_domicilios');
+        Schema::dropIfExists('user_domicilio');
     }
 }
