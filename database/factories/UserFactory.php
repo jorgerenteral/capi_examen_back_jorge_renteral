@@ -51,7 +51,7 @@ class UserFactory extends Factory
     {
         return $this->afterCreating(function (User $user) {
             $user->domicilio()->save(new UserDomicilio([
-                'domicilio' => $this->faker->address(),
+                'domicilio' => $this->faker->streetName(),
                 'numero_exterior' => $this->faker->buildingNumber(),
                 'colonia' => $this->faker->streetName(),
                 'cp' => $this->faker->biasedNumberBetween(11111,99999),
